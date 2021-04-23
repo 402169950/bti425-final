@@ -1,0 +1,68 @@
+<div class="text-center">
+  <code>
+    DEBUG:
+    <div>
+      Form input: userName: {{ signinFormEntity.userName }}&nbsp;&nbsp;&nbsp;
+      password:{{ signinFormEntity.password }}
+    </div>
+    <div>
+      Form submitted: userName:
+      {{ submittedFormEntity.userName }}&nbsp;&nbsp;&nbsp; password:{{
+        submittedFormEntity.password
+      }}
+    </div>
+  </code>
+  <form
+    class="form-signin"
+    #signinForm="ngForm"
+    (ngSubmit)="onSubmit(signinForm)"
+  >
+    <img
+      class="mb-4"
+      src="https://icon-library.com/images/lab-icon-png/lab-icon-png-16.jpg"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <input
+      type="text"
+      id="inputUserName"
+      class="form-control"
+      placeholder="User Name"
+      name="userName"
+      required=""
+      autofocus=""
+      [(ngModel)]="signinFormEntity.userName"
+      #userName="ngModel"
+      pattern="^[a-zA-Z0-9_.-]*$"
+    />
+    <div
+      *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+      class="alert alert-danger"
+    >
+      User name can only contain letters and numbers and must not be empty.
+    </div>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+      name="password"
+      required=""
+      [(ngModel)]="signinFormEntity.password"
+      #password="ngModel"
+      pattern="^[a-zA-Z0-9_.-]*$"
+    />
+    <div
+      *ngIf="password.invalid && (password.dirty || password.touched)"
+      class="alert alert-danger"
+    >
+      Password can only contain letters and numbers and must not be empty.
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Login
+    </button>
+    <p class="mt-5 mb-3 text-muted">© Tong Liu</p>
+  </form>
+</div>

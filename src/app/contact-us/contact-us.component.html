@@ -1,0 +1,73 @@
+<div class="text-center">
+  <form
+    class="form-feedback"
+    #feedbackForm="ngForm"
+    (ngSubmit)="onSubmit(feedbackForm)"
+  >
+    <img
+      class="mb-4"
+      src="https://www.flaticon.com/svg/vstatic/svg/2341/2341834.svg?token=exp=1619159749~hmac=469e9485930931c1f9aaa8c8eacf06dc"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">Please share your thoughts here.</h1>
+    <input
+      type="text"
+      id="inputName"
+      class="form-control"
+      placeholder="Name"
+      name="name"
+      required=""
+      autofocus=""
+      [(ngModel)]="inputContactEntity.name"
+      #name="ngModel"
+    />
+    <div
+      *ngIf="name.invalid && (name.dirty || name.touched)"
+      class="alert alert-danger"
+    >
+      Name cannot be empty.
+    </div>
+    <input
+      type="email"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Email"
+      name="email"
+      required=""
+      [(ngModel)]="inputContactEntity.email"
+      #email="ngModel"
+      pattern="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"
+    />
+    <div
+      *ngIf="email.invalid && (email.dirty || email.touched)"
+      class="alert alert-danger"
+    >
+      Email is invalid.
+    </div>
+    <input
+      type="text"
+      id="inputMessage"
+      class="form-control"
+      placeholder="message"
+      name="message"
+      required=""
+      [(ngModel)]="inputContactEntity.message"
+      #message="ngModel"
+    />
+    <div
+      *ngIf="message.invalid && (message.dirty || message.touched)"
+      class="alert alert-danger"
+    >
+      Message cannot be empty.
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Submit
+    </button>
+    <div *ngIf="isSubmitted" class="alert alert-success" id="sucess_container">
+      Feedback is submitted. Thanks.
+    </div>
+    <p class="mt-5 mb-3 text-muted">© Tong Liu</p>
+  </form>
+</div>
